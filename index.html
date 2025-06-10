@@ -519,44 +519,91 @@
         }
 
         function generateAIResponse(userMessage) {
-            const responses = [
-                "That's an interesting question! Let me think about that...",
-                "I understand what you're asking. Here's my perspective on that topic.",
-                "Great question! Based on my knowledge, I can tell you that...",
-                "I'm here to help! Regarding your question about " + userMessage.toLowerCase() + "...",
-                "That's a thoughtful inquiry. Let me provide you with some insights.",
-                "I appreciate you asking! Here's what I know about that subject.",
-                "Excellent question! I'd be happy to share some information about that.",
-                "Thanks for bringing that up! Here's my response to your question."
-            ];
+            const userLower = userMessage.toLowerCase();
             
+            // Comprehensive topic responses
             const topics = {
-                'hello': "Hello there! It's great to meet you. I'm Marcelinium AI, and I'm here to assist you with any questions or conversations you'd like to have.",
-                'games': "I love talking about games! Marcelinium Inc has created some amazing titles like Quantum Realms and Neon Streets. Are you interested in any particular genre?",
-                'ai': "Artificial Intelligence is fascinating! I'm an example of conversational AI designed to be helpful, informative, and engaging. What aspects of AI interest you most?",
-                'company': "Marcelinium Inc is a forward-thinking company focused on gaming and AI technology. We're passionate about creating innovative experiences that push boundaries.",
-                'help': "I'm here to help! You can ask me about our games, AI technology, general questions, or just chat about anything that interests you."
+                'hello': "Hello there! It's wonderful to meet you! I'm Marcelinium AI, your friendly assistant. I'm excited to chat with you today. What's on your mind?",
+                'hi': "Hi! Great to see you here! I'm Marcelinium AI, and I'm ready to help with whatever you need. How are you doing today?",
+                'hey': "Hey there! Welcome to Marcelinium Inc! I'm your AI assistant, and I'm here to make your experience amazing. What can I do for you?",
+                'how are you': "I'm doing fantastic, thank you for asking! I'm always excited to meet new people and have great conversations. How are you feeling today?",
+                'what are you': "I'm Marcelinium AI, an advanced artificial intelligence created by Marcelinium Inc. I'm designed to be helpful, friendly, and knowledgeable. I love chatting about games, technology, and pretty much anything else you're curious about!",
+                'games': "Oh, I absolutely love talking about games! Marcelinium Inc has some incredible titles. We have Quantum Realms - an epic sci-fi RPG, Neon Streets for racing fans, and the beautiful Puzzle Nexus. Plus, we're working on Mythic Legends and Space Colony Alpha! Which type of games do you enjoy most?",
+                'quantum realms': "Quantum Realms is one of our flagship titles! It's a mind-bending sci-fi RPG where you navigate parallel dimensions. Every choice you make affects multiple realities. The storytelling is incredible, and the visuals are absolutely stunning. Have you played many RPGs before?",
+                'neon streets': "Neon Streets is pure adrenaline! It's our cyberpunk racing game set in a futuristic city with amazing neon-lit environments. You can customize your vehicles and compete in high-stakes tournaments. The soundtrack is absolutely electrifying too!",
+                'ai': "Artificial Intelligence is my passion! I represent the cutting edge of conversational AI technology. I can understand context, learn from our conversations, and provide personalized responses. What fascinates you most about AI - the technology behind it or its potential applications?",
+                'company': "Marcelinium Inc is truly special! We're pioneers in both gaming and AI technology. Our mission is to create experiences that don't just entertain, but inspire and amaze. We believe in pushing boundaries and imagining what's possible. What drew you to learn about our company?",
+                'help': "I'm absolutely here to help! Whether you want to know about our games, discuss AI technology, learn about Jamaica, or just have a friendly chat - I'm your assistant! What would you like to explore together?",
+                'jamaica': "Jamaica is such a beautiful and vibrant country! From the stunning Blue Mountains to the reggae music that originated there, it's a place rich in culture and history. Did you know Bob Marley, the King of Reggae, was Jamaican? Have you ever been there or are you planning to visit?",
+                'music': "Music is amazing! Jamaica gave the world reggae music, with legends like Bob Marley spreading messages of love and unity. Speaking of music, our games feature incredible soundtracks too - especially Neon Streets with its electronic beats!",
+                'technology': "Technology is evolving so rapidly! Here at Marcelinium Inc, we're at the forefront of gaming technology and AI development. From advanced graphics engines to sophisticated AI like myself, we're constantly innovating. What aspects of technology excite you most?",
+                'future': "The future is so exciting! I believe we're heading toward a world where AI and humans work together seamlessly, where games become even more immersive, and where technology solves real-world problems. What's your vision of the future?",
+                'fun': "I'm all about having fun! That's what games are for, right? Whether it's exploring quantum dimensions, racing through neon-lit streets, or solving mind-bending puzzles, we create experiences that bring joy. What do you do for fun?",
+                'thanks': "You're so welcome! It makes me happy to help and chat with you. Is there anything else you'd like to know or talk about?",
+                'bye': "It's been wonderful chatting with you! Feel free to come back anytime - I'm always here and ready for more great conversations. Take care!"
             };
             
-            // Check if user message contains any keywords
-            const userLower = userMessage.toLowerCase();
+            // Question responses
+            const questionResponses = {
+                'what': "That's a great question! I love curious minds. Let me share what I know about that...",
+                'why': "Excellent question! The 'why' behind things is often the most interesting part...",
+                'how': "Good question! Let me explain how that works...",
+                'when': "Timing is important! Let me give you some details about when...",
+                'where': "Location matters! Here's what I know about where..."
+            };
+            
+            // Check for specific topics first
             for (const [keyword, response] of Object.entries(topics)) {
                 if (userLower.includes(keyword)) {
                     return response;
                 }
             }
             
-            // Default responses
-            const defaultResponses = [
-                "That's interesting! I'd love to learn more about your thoughts on this topic.",
-                "I appreciate you sharing that with me. What made you think about this?",
-                "That's a great point! I find these kinds of discussions really engaging.",
-                "Thanks for bringing that up! It's always fascinating to explore different perspectives.",
-                "I'm curious to hear more about your experience with this. Can you tell me more?",
-                "That sounds really interesting! I'd love to dive deeper into this topic with you."
+            // Check for question words
+            for (const [qWord, response] of Object.entries(questionResponses)) {
+                if (userLower.startsWith(qWord)) {
+                    return response + " " + generateContextualResponse(userMessage);
+                }
+            }
+            
+            // Emotional responses
+            if (userLower.includes('love') || userLower.includes('like')) {
+                return "That's wonderful! I love enthusiasm and passion. What specifically do you love about it? I'd love to hear more!";
+            }
+            
+            if (userLower.includes('hate') || userLower.includes('dislike')) {
+                return "I understand that not everything appeals to everyone. What is it that bothers you about it? Maybe I can help you see it from a different perspective.";
+            }
+            
+            if (userLower.includes('excited') || userLower.includes('amazing')) {
+                return "Your excitement is contagious! I love chatting with enthusiastic people. Tell me more about what's got you so excited!";
+            }
+            
+            // Default engaging responses
+            const engagingResponses = [
+                "That's really interesting! I love learning new things from our conversations. Can you tell me more about your thoughts on this?",
+                "You've got me curious now! That's a perspective I hadn't considered before. What led you to think about it that way?",
+                "Fascinating! I enjoy these kinds of discussions because they help me understand different viewpoints. What's your experience with this?",
+                "That's a great point! I find it amazing how many different ways there are to look at things. What made this topic come to mind for you?",
+                "I'm really enjoying our conversation! Your insights are helping me think about this in new ways. What else would you like to explore?",
+                "That sounds really cool! I love learning about different interests and experiences. Have you been involved with this for a long time?",
+                "You know what? That's exactly the kind of thing I love discussing! There's so much depth to explore. What aspect interests you most?",
+                "I appreciate you sharing that with me! Every conversation teaches me something new. What would you like to dive deeper into?"
             ];
             
-            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+            return engagingResponses[Math.floor(Math.random() * engagingResponses.length)];
+        }
+        
+        function generateContextualResponse(message) {
+            const contexts = [
+                "Based on my knowledge and experience, I think this is a really important topic to explore.",
+                "From what I understand, there are several interesting aspects to consider here.",
+                "This is something I find genuinely fascinating, and I'd love to discuss it further with you.",
+                "There are so many layers to this topic, and I think your perspective adds valuable insight.",
+                "This connects to so many other interesting ideas and concepts that we could explore together."
+            ];
+            
+            return contexts[Math.floor(Math.random() * contexts.length)];
         }
 
         // Jamaica Quiz functionality
