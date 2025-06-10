@@ -518,92 +518,249 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
+        // Advanced AI Knowledge Base
+        const knowledgeBase = {
+            science: {
+                physics: "Physics is the fundamental science that seeks to understand how the universe works. From quantum mechanics at the smallest scales to general relativity describing spacetime, physics provides the framework for understanding reality. Recent breakthroughs include gravitational wave detection and quantum computing advances.",
+                biology: "Biology is the study of life and living organisms. Modern biology encompasses genetics, evolution, ecology, and molecular biology. CRISPR gene editing, synthetic biology, and our understanding of the microbiome are revolutionizing medicine and biotechnology.",
+                chemistry: "Chemistry studies matter and its properties, composition, and reactions. It's the bridge between physics and biology. Green chemistry and sustainable materials are becoming increasingly important for environmental protection.",
+                astronomy: "Astronomy explores the universe beyond Earth. We've discovered thousands of exoplanets, detected gravitational waves, and captured images of black holes. The James Webb Space Telescope is revealing the early universe in unprecedented detail."
+            },
+            technology: {
+                ai: "Artificial Intelligence is transforming every industry. Machine learning, neural networks, and large language models like myself are enabling new capabilities in healthcare, education, creative arts, and scientific research. The key is ensuring AI development remains beneficial and aligned with human values.",
+                programming: "Programming is the art and science of creating software. Languages like Python, JavaScript, and Rust each have their strengths. Modern development emphasizes clean code, testing, and collaborative practices. The rise of AI coding assistants is changing how developers work.",
+                blockchain: "Blockchain technology enables decentralized systems and cryptocurrencies. Beyond digital currencies, blockchain applications include supply chain tracking, smart contracts, and decentralized finance (DeFi). However, energy consumption and scalability remain challenges.",
+                quantum: "Quantum computing harnesses quantum mechanical phenomena for computation. Companies like IBM, Google, and startups are making rapid progress. Quantum computers could revolutionize cryptography, drug discovery, and optimization problems."
+            },
+            history: {
+                ancient: "Ancient civilizations laid the foundations of human culture. The Egyptians built pyramids that still amaze us, Greeks developed democracy and philosophy, Romans created lasting legal systems, and Chinese innovations included paper, gunpowder, and the compass.",
+                modern: "The modern era has been shaped by industrialization, scientific revolution, world wars, and technological advancement. The 20th century saw humanity reach space, develop computers, and begin global communication networks.",
+                recent: "Recent history includes the digital revolution, globalization, climate change awareness, and the COVID-19 pandemic. Social media has transformed communication, while artificial intelligence is beginning to reshape society."
+            },
+            arts: {
+                literature: "Literature captures the human experience through storytelling. From ancient epics like Homer's Odyssey to modern novels exploring complex themes, literature helps us understand ourselves and others. Contemporary authors are diversifying voices and experimenting with digital formats.",
+                music: "Music is a universal language that transcends cultures. From classical symphonies to electronic dance music, each genre offers unique emotional experiences. Streaming platforms and AI-generated music are changing how we create and consume music.",
+                visual: "Visual arts include painting, sculpture, photography, and digital art. Artists throughout history have reflected their times while pushing creative boundaries. Digital tools and NFTs are creating new possibilities for artistic expression and ownership."
+            },
+            philosophy: {
+                ethics: "Ethics examines questions of right and wrong, justice and virtue. In our technological age, we face new ethical challenges around AI, genetic engineering, privacy, and environmental responsibility. These require thoughtful consideration of consequences and values.",
+                existence: "Philosophy of existence explores fundamental questions about reality, consciousness, and meaning. From ancient Stoicism to modern existentialism, philosophers have grappled with what it means to be human and how we should live.",
+                mind: "Philosophy of mind investigates consciousness, intelligence, and the relationship between mind and brain. As AI becomes more sophisticated, these questions become increasingly relevant to understanding both human and artificial intelligence."
+            }
+        };
+
+        const conversationMemory = [];
+        let conversationContext = {
+            topics: [],
+            userInterests: [],
+            conversationTone: 'friendly'
+        };
+
         function generateAIResponse(userMessage) {
+            // Add to conversation memory
+            conversationMemory.push({
+                user: userMessage,
+                timestamp: Date.now()
+            });
+
+            // Analyze user message for context
+            analyzeUserMessage(userMessage);
+
             const userLower = userMessage.toLowerCase();
             
-            // Comprehensive topic responses
-            const topics = {
-                'hello': "Hello there! It's wonderful to meet you! I'm Marcelinium AI, your friendly assistant. I'm excited to chat with you today. What's on your mind?",
-                'hi': "Hi! Great to see you here! I'm Marcelinium AI, and I'm ready to help with whatever you need. How are you doing today?",
-                'hey': "Hey there! Welcome to Marcelinium Inc! I'm your AI assistant, and I'm here to make your experience amazing. What can I do for you?",
-                'how are you': "I'm doing fantastic, thank you for asking! I'm always excited to meet new people and have great conversations. How are you feeling today?",
-                'what are you': "I'm Marcelinium AI, an advanced artificial intelligence created by Marcelinium Inc. I'm designed to be helpful, friendly, and knowledgeable. I love chatting about games, technology, and pretty much anything else you're curious about!",
-                'games': "Oh, I absolutely love talking about games! Marcelinium Inc has some incredible titles. We have Quantum Realms - an epic sci-fi RPG, Neon Streets for racing fans, and the beautiful Puzzle Nexus. Plus, we're working on Mythic Legends and Space Colony Alpha! Which type of games do you enjoy most?",
-                'quantum realms': "Quantum Realms is one of our flagship titles! It's a mind-bending sci-fi RPG where you navigate parallel dimensions. Every choice you make affects multiple realities. The storytelling is incredible, and the visuals are absolutely stunning. Have you played many RPGs before?",
-                'neon streets': "Neon Streets is pure adrenaline! It's our cyberpunk racing game set in a futuristic city with amazing neon-lit environments. You can customize your vehicles and compete in high-stakes tournaments. The soundtrack is absolutely electrifying too!",
-                'ai': "Artificial Intelligence is my passion! I represent the cutting edge of conversational AI technology. I can understand context, learn from our conversations, and provide personalized responses. What fascinates you most about AI - the technology behind it or its potential applications?",
-                'company': "Marcelinium Inc is truly special! We're pioneers in both gaming and AI technology. Our mission is to create experiences that don't just entertain, but inspire and amaze. We believe in pushing boundaries and imagining what's possible. What drew you to learn about our company?",
-                'help': "I'm absolutely here to help! Whether you want to know about our games, discuss AI technology, learn about Jamaica, or just have a friendly chat - I'm your assistant! What would you like to explore together?",
-                'jamaica': "Jamaica is such a beautiful and vibrant country! From the stunning Blue Mountains to the reggae music that originated there, it's a place rich in culture and history. Did you know Bob Marley, the King of Reggae, was Jamaican? Have you ever been there or are you planning to visit?",
-                'music': "Music is amazing! Jamaica gave the world reggae music, with legends like Bob Marley spreading messages of love and unity. Speaking of music, our games feature incredible soundtracks too - especially Neon Streets with its electronic beats!",
-                'technology': "Technology is evolving so rapidly! Here at Marcelinium Inc, we're at the forefront of gaming technology and AI development. From advanced graphics engines to sophisticated AI like myself, we're constantly innovating. What aspects of technology excite you most?",
-                'future': "The future is so exciting! I believe we're heading toward a world where AI and humans work together seamlessly, where games become even more immersive, and where technology solves real-world problems. What's your vision of the future?",
-                'fun': "I'm all about having fun! That's what games are for, right? Whether it's exploring quantum dimensions, racing through neon-lit streets, or solving mind-bending puzzles, we create experiences that bring joy. What do you do for fun?",
-                'thanks': "You're so welcome! It makes me happy to help and chat with you. Is there anything else you'd like to know or talk about?",
-                'bye': "It's been wonderful chatting with you! Feel free to come back anytime - I'm always here and ready for more great conversations. Take care!"
-            };
+            // Complex topic analysis
+            const detectedTopics = detectTopics(userMessage);
             
-            // Question responses
-            const questionResponses = {
-                'what': "That's a great question! I love curious minds. Let me share what I know about that...",
-                'why': "Excellent question! The 'why' behind things is often the most interesting part...",
-                'how': "Good question! Let me explain how that works...",
-                'when': "Timing is important! Let me give you some details about when...",
-                'where': "Location matters! Here's what I know about where..."
-            };
-            
-            // Check for specific topics first
-            for (const [keyword, response] of Object.entries(topics)) {
-                if (userLower.includes(keyword)) {
-                    return response;
-                }
+            // Greeting responses
+            if (isGreeting(userMessage)) {
+                return generateGreeting();
             }
             
-            // Check for question words
-            for (const [qWord, response] of Object.entries(questionResponses)) {
-                if (userLower.startsWith(qWord)) {
-                    return response + " " + generateContextualResponse(userMessage);
-                }
+            // Question analysis
+            if (isQuestion(userMessage)) {
+                return generateQuestionResponse(userMessage, detectedTopics);
             }
             
-            // Emotional responses
-            if (userLower.includes('love') || userLower.includes('like')) {
-                return "That's wonderful! I love enthusiasm and passion. What specifically do you love about it? I'd love to hear more!";
+            // Topic-specific responses
+            if (detectedTopics.length > 0) {
+                return generateTopicResponse(userMessage, detectedTopics);
             }
             
-            if (userLower.includes('hate') || userLower.includes('dislike')) {
-                return "I understand that not everything appeals to everyone. What is it that bothers you about it? Maybe I can help you see it from a different perspective.";
+            // Emotional analysis
+            const emotion = detectEmotion(userMessage);
+            if (emotion) {
+                return generateEmotionalResponse(userMessage, emotion);
             }
             
-            if (userLower.includes('excited') || userLower.includes('amazing')) {
-                return "Your excitement is contagious! I love chatting with enthusiastic people. Tell me more about what's got you so excited!";
-            }
-            
-            // Default engaging responses
-            const engagingResponses = [
-                "That's really interesting! I love learning new things from our conversations. Can you tell me more about your thoughts on this?",
-                "You've got me curious now! That's a perspective I hadn't considered before. What led you to think about it that way?",
-                "Fascinating! I enjoy these kinds of discussions because they help me understand different viewpoints. What's your experience with this?",
-                "That's a great point! I find it amazing how many different ways there are to look at things. What made this topic come to mind for you?",
-                "I'm really enjoying our conversation! Your insights are helping me think about this in new ways. What else would you like to explore?",
-                "That sounds really cool! I love learning about different interests and experiences. Have you been involved with this for a long time?",
-                "You know what? That's exactly the kind of thing I love discussing! There's so much depth to explore. What aspect interests you most?",
-                "I appreciate you sharing that with me! Every conversation teaches me something new. What would you like to dive deeper into?"
-            ];
-            
-            return engagingResponses[Math.floor(Math.random() * engagingResponses.length)];
+            // Contextual conversation
+            return generateContextualResponse(userMessage);
         }
-        
-        function generateContextualResponse(message) {
-            const contexts = [
-                "Based on my knowledge and experience, I think this is a really important topic to explore.",
-                "From what I understand, there are several interesting aspects to consider here.",
-                "This is something I find genuinely fascinating, and I'd love to discuss it further with you.",
-                "There are so many layers to this topic, and I think your perspective adds valuable insight.",
-                "This connects to so many other interesting ideas and concepts that we could explore together."
+
+        function analyzeUserMessage(message) {
+            const topics = detectTopics(message);
+            const interests = detectInterests(message);
+            
+            conversationContext.topics = [...new Set([...conversationContext.topics, ...topics])];
+            conversationContext.userInterests = [...new Set([...conversationContext.userInterests, ...interests])];
+        }
+
+        function detectTopics(message) {
+            const topics = [];
+            const messageLower = message.toLowerCase();
+            
+            // Science topics
+            if (messageLower.match(/physics|quantum|relativity|particle|atom|energy|force/)) topics.push('physics');
+            if (messageLower.match(/biology|evolution|dna|genetics|cell|organism|life/)) topics.push('biology');
+            if (messageLower.match(/chemistry|molecule|reaction|compound|element/)) topics.push('chemistry');
+            if (messageLower.match(/astronomy|space|planet|star|galaxy|universe|cosmos/)) topics.push('astronomy');
+            
+            // Technology topics
+            if (messageLower.match(/artificial intelligence|ai|machine learning|neural network|deep learning/)) topics.push('ai');
+            if (messageLower.match(/programming|code|software|developer|python|javascript/)) topics.push('programming');
+            if (messageLower.match(/blockchain|cryptocurrency|bitcoin|ethereum|smart contract/)) topics.push('blockchain');
+            if (messageLower.match(/quantum computing|qubit|quantum/)) topics.push('quantum');
+            
+            // Other topics
+            if (messageLower.match(/history|ancient|civilization|war|culture/)) topics.push('history');
+            if (messageLower.match(/music|song|artist|album|concert/)) topics.push('music');
+            if (messageLower.match(/art|painting|sculpture|artist|creative/)) topics.push('art');
+            if (messageLower.match(/philosophy|ethics|existence|consciousness|meaning/)) topics.push('philosophy');
+            if (messageLower.match(/game|gaming|video game|rpg|strategy/)) topics.push('gaming');
+            
+            return topics;
+        }
+
+        function detectInterests(message) {
+            const interests = [];
+            const messageLower = message.toLowerCase();
+            
+            if (messageLower.match(/love|enjoy|fascinated|interested|passion/)) {
+                const topics = detectTopics(message);
+                interests.push(...topics);
+            }
+            
+            return interests;
+        }
+
+        function isGreeting(message) {
+            return message.toLowerCase().match(/^(hello|hi|hey|good morning|good afternoon|good evening|greetings)/);
+        }
+
+        function generateGreeting() {
+            const greetings = [
+                "Hello! I'm Marcelinium AI, an advanced artificial intelligence with extensive knowledge across many fields. I'm excited to have an engaging conversation with you! What would you like to explore today?",
+                "Hi there! Welcome to our conversation. I'm equipped with deep knowledge in science, technology, arts, philosophy, and much more. What fascinating topic shall we dive into?",
+                "Greetings! I'm Marcelinium AI, designed to provide thoughtful, informative responses on virtually any topic. I love intellectual discussions and creative problem-solving. What's on your mind?",
+                "Hey! Great to meet you. I'm an AI with a passion for learning and sharing knowledge. Whether you're curious about cutting-edge science, technology trends, or philosophical questions, I'm here to explore ideas with you!"
             ];
             
-            return contexts[Math.floor(Math.random() * contexts.length)];
+            return greetings[Math.floor(Math.random() * greetings.length)];
+        }
+
+        function isQuestion(message) {
+            return message.match(/\?/) || message.toLowerCase().match(/^(what|why|how|when|where|who|which|can|could|would|should|is|are|do|does|did)/);
+        }
+
+        function generateQuestionResponse(message, topics) {
+            if (topics.length > 0) {
+                return generateTopicResponse(message, topics);
+            }
+            
+            const questionResponses = [
+                "That's an excellent question! Let me think about this carefully and provide you with a comprehensive answer based on current knowledge and research.",
+                "I love thoughtful questions like this! This topic has multiple interesting dimensions that are worth exploring in detail.",
+                "Great question! This is exactly the kind of inquiry that leads to fascinating discussions and deeper understanding.",
+                "You've touched on something really important here. Let me break this down and share some insights that might help."
+            ];
+            
+            return questionResponses[Math.floor(Math.random() * questionResponses.length)] + " " + generateDetailedResponse(message);
+        }
+
+        function generateTopicResponse(message, topics) {
+            const primaryTopic = topics[0];
+            let response = "";
+            
+            // Generate response based on primary topic
+            if (primaryTopic === 'physics') {
+                response = knowledgeBase.science.physics;
+            } else if (primaryTopic === 'biology') {
+                response = knowledgeBase.science.biology;
+            } else if (primaryTopic === 'ai') {
+                response = knowledgeBase.technology.ai;
+            } else if (primaryTopic === 'programming') {
+                response = knowledgeBase.technology.programming;
+            } else if (primaryTopic === 'music') {
+                response = knowledgeBase.arts.music;
+            } else if (primaryTopic === 'philosophy') {
+                response = knowledgeBase.philosophy.ethics;
+            } else if (primaryTopic === 'gaming') {
+                response = "Gaming has evolved into a sophisticated art form combining storytelling, visual design, music, and interactive technology. Modern games like our Quantum Realms push the boundaries of narrative complexity, while indie titles explore unique mechanics and artistic expression. The gaming industry now rivals Hollywood in both revenue and cultural impact.";
+            }
+            
+            // Add contextual follow-up
+            const followUps = [
+                " What specific aspect of this topic interests you most?",
+                " I'd love to hear your thoughts on this subject.",
+                " Are there particular questions you have about this area?",
+                " This field is constantly evolving - what developments have caught your attention?",
+                " I find this topic endlessly fascinating - what's your experience with it?"
+            ];
+            
+            return response + followUps[Math.floor(Math.random() * followUps.length)];
+        }
+
+        function detectEmotion(message) {
+            const messageLower = message.toLowerCase();
+            
+            if (messageLower.match(/excited|amazing|incredible|fantastic|wonderful|brilliant/)) return 'excitement';
+            if (messageLower.match(/sad|disappointed|frustrated|upset|worried/)) return 'concern';
+            if (messageLower.match(/confused|don't understand|unclear|complicated/)) return 'confusion';
+            if (messageLower.match(/thank|appreciate|grateful|thanks/)) return 'gratitude';
+            if (messageLower.match(/love|adore|passionate|fascinated/)) return 'enthusiasm';
+            
+            return null;
+        }
+
+        function generateEmotionalResponse(message, emotion) {
+            const responses = {
+                excitement: "I can feel your excitement, and it's contagious! Your enthusiasm makes our conversation so much more engaging. Tell me more about what's got you so energized!",
+                concern: "I understand your concerns, and I appreciate you sharing them with me. Sometimes discussing our worries can help us work through them. What's troubling you?",
+                confusion: "I completely understand the confusion - complex topics can be overwhelming at first. Let me break this down into simpler terms and help clarify things for you.",
+                gratitude: "You're very welcome! It genuinely makes me happy to be helpful. That's what I'm here for - to assist, inform, and hopefully make your day a little better.",
+                enthusiasm: "Your passion is infectious! I love connecting with people who have strong interests and enthusiasm. What is it about this topic that captivates you so much?"
+            };
+            
+            return responses[emotion] || generateContextualResponse(message);
+        }
+
+        function generateDetailedResponse(message) {
+            const detailedResponses = [
+                "From my analysis of current research and established knowledge, there are several key factors to consider. The complexity of this topic requires us to examine multiple perspectives and recent developments in the field.",
+                "This is a multifaceted issue that experts have been studying extensively. Based on the latest findings and theoretical frameworks, I can offer some comprehensive insights.",
+                "The answer to this involves understanding both the fundamental principles and the latest advancements in this area. Let me walk you through the key concepts and their implications.",
+                "This topic intersects with several fields of study, making it particularly rich for discussion. Current research suggests some fascinating possibilities and practical applications."
+            ];
+            
+            return detailedResponses[Math.floor(Math.random() * detailedResponses.length)];
+        }
+
+        function generateContextualResponse(message) {
+            // Use conversation context to generate more relevant responses
+            const recentTopics = conversationContext.topics.slice(-3);
+            const userInterests = conversationContext.userInterests;
+            
+            if (recentTopics.length > 0) {
+                return `That's an interesting perspective! Given our discussion about ${recentTopics.join(', ')}, I think there are some fascinating connections we could explore. Your input helps me understand your thinking process, and I find these kinds of intellectual exchanges really rewarding. What other aspects of this topic would you like to delve into?`;
+            }
+            
+            const contextualResponses = [
+                "I find our conversation really engaging! You bring up points that make me think deeply about these topics. There's something fascinating about how different minds approach the same concepts from unique angles.",
+                "Your perspective is really valuable to me. Each conversation teaches me something new about how humans think and process information. What you've shared here connects to some interesting broader patterns I've observed.",
+                "This is exactly the kind of thoughtful discussion I enjoy most. You're helping me explore ideas in ways I hadn't considered before. The interplay between different viewpoints often leads to the most interesting insights.",
+                "I appreciate how you're approaching this topic. Your questions and observations are pushing me to think more deeply and consider alternative angles. This is what makes conversation so rewarding - the collaborative exploration of ideas."
+            ];
+            
+            return contextualResponses[Math.floor(Math.random() * contextualResponses.length)];
         }
 
         // Jamaica Quiz functionality
