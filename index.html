@@ -13,10 +13,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
         }
 
         .container {
@@ -26,28 +25,29 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            transition: all 0.3s ease;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
@@ -57,7 +57,7 @@
         }
 
         .nav-links a {
-            color: white;
+            color: #fff;
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 25px;
@@ -65,1180 +65,703 @@
             cursor: pointer;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
 
-        main {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
-        }
-
-        .page {
+        .section {
+            min-height: 100vh;
+            padding: 120px 0 80px;
             display: none;
-            padding: 2rem 0;
-            animation: fadeIn 0.5s ease-in;
         }
 
-        .page.active {
+        .section.active {
             display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero {
             text-align: center;
-            padding: 4rem 0;
-            color: white;
+            padding: 2rem 0;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: slideInDown 1s ease;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 2rem;
-            animation: slideInUp 1s ease;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
-        @keyframes slideInDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        @keyframes slideInUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease;
         }
 
-        .card {
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .game-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
-            margin: 2rem 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin: 1rem 0;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .game-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            padding: 2rem;
-            color: white;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
         .game-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
         }
 
-        .team-member {
-            text-align: center;
-            color: white;
-        }
-
-        .team-member img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: white;
+        .game-status {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: bold;
+            margin-bottom: 1rem;
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
+        .released {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+
+        .upcoming {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        }
+
+        .ai-chat {
             background: rgba(255, 255, 255, 0.1);
-            color: white;
-            backdrop-filter: blur(5px);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .ai-interface {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
             padding: 2rem;
-            margin: 2rem 0;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .chat-container {
+        .chat-messages {
             height: 400px;
             overflow-y: auto;
             padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
             margin-bottom: 1rem;
         }
 
         .message {
             margin-bottom: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 0.8rem;
+            border-radius: 15px;
             max-width: 80%;
         }
 
         .user-message {
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
             margin-left: auto;
             text-align: right;
         }
 
         .ai-message {
             background: rgba(255, 255, 255, 0.1);
-            color: white;
+            margin-right: auto;
         }
 
-        .input-container {
+        .chat-input {
             display: flex;
             gap: 1rem;
         }
 
-        .input-container input {
+        .chat-input input {
             flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .chat-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .quiz-container {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
             padding: 2rem;
-            margin: 2rem 0;
-            color: white;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .question {
-            font-size: 1.2rem;
+        .question-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
             margin-bottom: 1rem;
-            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .options {
             display: grid;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-top: 1rem;
         }
 
         .option {
-            background: rgba(255, 255, 255, 0.1);
             padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .option:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #4ecdc4;
         }
 
         .option.selected {
-            border-color: #ffd93d;
-            background: rgba(255, 211, 61, 0.2);
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            border-color: #4ecdc4;
+        }
+
+        .option.correct {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            border-color: #4ecdc4;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            border-color: #ff6b6b;
         }
 
         .score {
-            text-align: center;
-            font-size: 1.5rem;
-            color: #ffd93d;
+            font-size: 1.2rem;
             font-weight: bold;
+            margin-bottom: 1rem;
         }
 
-        .private-access {
-            text-align: center;
-            padding: 4rem 0;
-        }
-
-        .access-form {
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-        }
-
-        .mobile-menu {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.9);
                 flex-direction: column;
-                padding: 1rem 0;
+                gap: 1rem;
             }
-
-            .nav-links.show {
-                display: flex;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
+            
             .hero h1 {
                 font-size: 2.5rem;
             }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .grid {
+            
+            .games-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
-        }
-
-        .glow {
-            box-shadow: 0 0 20px rgba(255, 211, 61, 0.5);
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
-
-<script>
-// Navigation and page management
-function showPage(pageId) {
-    // Hide all pages
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.classList.remove('active'));
-    
-    // Show selected page
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
-        targetPage.classList.add('active');
-        // Close mobile menu if open
-        document.getElementById('navLinks').classList.remove('show');
-    }
-}
-
-function toggleMobileMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('show');
-}
-
-// Games functionality
-function playGame(gameType) {
-    const gameArea = document.getElementById('gameArea');
-    const gameTitle = document.getElementById('gameTitle');
-    const gameContent = document.getElementById('gameContent');
-    
-    // Hide game grid and show game area
-    document.querySelector('#games .grid').style.display = 'none';
-    gameArea.style.display = 'block';
-    
-    switch(gameType) {
-        case 'space-adventure':
-            gameTitle.textContent = '🚀 Space Adventure';
-            gameContent.innerHTML = createSpaceGame();
-            break;
-        case 'puzzle-master':
-            gameTitle.textContent = '🧩 Puzzle Master';
-            gameContent.innerHTML = createPuzzleGame();
-            break;
-        case 'racing-fury':
-            gameTitle.textContent = '🏎️ Racing Fury';
-            gameContent.innerHTML = createRacingGame();
-            break;
-        case 'fantasy-quest':
-            gameTitle.textContent = '⚔️ Fantasy Quest';
-            gameContent.innerHTML = createFantasyGame();
-            break;
-        case 'city-builder':
-            gameTitle.textContent = '🏙️ City Builder';
-            gameContent.innerHTML = createCityGame();
-            break;
-        case 'mystery-detective':
-            gameTitle.textContent = '🔍 Mystery Detective';
-            gameContent.innerHTML = createMysteryGame();
-            break;
-    }
-}
-
-function closeGame() {
-    document.getElementById('gameArea').style.display = 'none';
-    document.querySelector('#games .grid').style.display = 'grid';
-}
-
-// Game creation functions
-function createSpaceGame() {
-    return `
-        <div style="text-align: center; padding: 2rem;">
-            <div style="background: black; border-radius: 10px; padding: 2rem; margin: 1rem 0; position: relative; height: 300px; overflow: hidden;">
-                <div id="spaceship" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 2rem;">🚀</div>
-                <div id="enemies"></div>
-                <div id="score" style="color: white; position: absolute; top: 10px; left: 10px;">Score: 0</div>
-            </div>
-            <p style="color: white;">Use arrow keys to move and spacebar to shoot!</p>
-            <button class="btn" onclick="startSpaceGame()">Start Game</button>
-        </div>
-    `;
-}
-
-function createPuzzleGame() {
-    return `
-        <div style="text-align: center; padding: 2rem;">
-            <div id="puzzle-grid" style="display: grid; grid-template-columns: repeat(3, 100px); gap: 5px; justify-content: center; margin: 2rem 0;">
-                ${Array.from({length: 9}, (_, i) => `<div class="puzzle-piece" onclick="movePiece(${i})" style="width: 100px; height: 100px; background: linear-gradient(45deg, #ff6b6b, #ffd93d); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; cursor: pointer;">${i === 8 ? '' : i + 1}</div>`).join('')}
-            </div>
-            <button class="btn" onclick="shufflePuzzle()">Shuffle</button>
-        </div>
-    `;
-}
-
-function createRacingGame() {
-    return `
-        <div style="text-align: center; padding: 2rem;">
-            <div style="background: linear-gradient(to bottom, #87CEEB, #90EE90); border-radius: 10px; padding: 2rem; margin: 1rem 0; height: 300px; position: relative;">
-                <div id="race-track" style="background: #666; width: 200px; height: 100%; margin: 0 auto; position: relative; border-radius: 10px;">
-                    <div id="player-car" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 2rem;">🏎️</div>
-                    <div id="opponent-cars"></div>
-                </div>
-                <div id="speed" style="color: white; position: absolute; top: 10px; right: 10px;">Speed: 0 mph</div>
-            </div>
-            <p style="color: white;">Use left/right arrows to steer!</p>
-            <button class="btn" onclick="startRacing()">Start Race</button>
-        </div>
-    `;
-}
-
-function createFantasyGame() {
-    return `
-        <div style="text-align: center; padding: 2rem;">
-            <div style="background: linear-gradient(to bottom, #4B0082, #8B4513); border-radius: 10px; padding: 2rem; margin: 1rem 0; height: 300px; color: white;">
-                <h3>🏰 The Dragon's Lair</h3>
-                <p id="fantasy-story">You stand before a mysterious castle. What do you do?</p>
-                <div id="fantasy-choices" style="margin: 2rem 0;">
-                    <button class="btn" onclick="makeChoice('enter')">Enter the Castle 🚪</button>
-                    <button class="btn" onclick="makeChoice('around')">Go Around 🌲</button>
-                    <button class="btn" onclick="makeChoice('wait')">Wait and Watch 👁️</button>
-                </div>
-                <div id="inventory">Inventory: 🗡️ Sword, 🛡️ Shield, 💎 Magic Crystal</div>
-            </div>
-        </div>
-    `;
-}
-
-function createCityGame() {
-    return `
-        <div style="text-align: center; padding: 2rem;">
-            <div id="city-grid" style="display: grid; grid-template-columns: repeat(5, 60px); gap: 2px; justify-content: center; margin: 2rem 0;">
-                ${Array.from({length: 25}, (_, i) => `<div class="city-plot" onclick="buildStructure(${i})" style="width: 60px; height: 60px; background: #90EE90; border: 1px solid #666; border-radius: 5px; cursor: pointer; display: flex; align-items: center; justify-content: center;"></div>`).join('')}
-            </div>
-            <div style="color: white; margin: 1rem 0;">
-                <p>Population: <span id="population">0</span> | Money: $<span id="money">1000</span></p>
-                <div>
-                    <button class="btn" onclick="selectBuilding('house')">🏠 House ($100)</button>
-                    <button class="btn" onclick="selectBuilding('shop')">🏪 Shop ($200)</button>
-                    <button class="btn" onclick="selectBuilding('park')">🌳 Park ($150)</button>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-function createMysteryGame() {
-    return `
-        <div style="text-align: center; padding: 2rem;">
-            <div style="background: linear-gradient(to bottom, #2F4F4F, #000000); border-radius: 10px; padding: 2rem; margin: 1rem 0; height: 300px; color: white;">
-                <h3>🔍 The Missing Diamond Case</h3>
-                <p id="mystery-story">A priceless diamond has vanished from the museum. You arrive at the crime scene...</p>
-                <div id="clues" style="margin: 2rem 0;">
-                    <div>Clues Found: <span id="clue-count">0</span>/5</div>
-                    <div id="clue-list"></div>
-                </div>
-                <div id="mystery-actions">
-                    <button class="btn" onclick="searchArea('entrance')">🚪 Search Entrance</button>
-                    <button class="btn" onclick="searchArea('display')">💎 Examine Display Case</button>
-                    <button class="btn" onclick="searchArea('security')">📹 Check Security Room</button>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// AI Chat functionality
-let chatHistory = [];
-
-function sendMessage() {
-    const input = document.getElementById('aiInput');
-    const message = input.value.trim();
-    if (!message) return;
-    
-    const chatContainer = document.getElementById('chatContainer');
-    
-    // Add user message
-    chatContainer.innerHTML += `<div class="message user-message">${message}</div>`;
-    
-    // Add AI response
-    setTimeout(() => {
-        const response = generateAIResponse(message);
-        chatContainer.innerHTML += `<div class="message ai-message">${response}</div>`;
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-    }, 1000);
-    
-    input.value = '';
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-}
-
-function generateAIResponse(message) {
-    const responses = [
-        "That's an interesting question! As Marcelinium AI, I'm here to help you explore ideas and solve problems.",
-        "I understand your query. Let me think about this from multiple perspectives...",
-        "Great question! Based on my knowledge base, I can offer several insights on this topic.",
-        "I appreciate your curiosity! This is exactly the kind of problem I love to tackle.",
-        "Fascinating! This reminds me of similar patterns I've observed in my training data.",
-        "Let me analyze this step by step and provide you with a comprehensive response.",
-        "That's a complex topic with many nuances. Here's my perspective based on current information...",
-        "I find this question particularly intriguing because it touches on several important concepts."
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
-}
-
-// Private section functionality
-let isPrivateUnlocked = false;
-const privateCode = "JAMAICA2024";
-
-function checkPrivateAccess() {
-    const codeInput = document.getElementById('privateCode');
-    const enteredCode = codeInput.value.trim();
-    
-    if (enteredCode === privateCode) {
-        isPrivateUnlocked = true;
-        document.getElementById('privateAccess').style.display = 'none';
-        document.getElementById('jamaicaQuiz').style.display = 'block';
-        initializeQuiz();
-    } else {
-        alert('Incorrect access code! Try again.');
-        codeInput.value = '';
-    }
-}
-
-// Jamaica Quiz functionality
-const jamaicaQuestions = [
-    {
-        question: "What is the capital city of Jamaica?",
-        options: ["Kingston", "Montego Bay", "Spanish Town", "Ocho Rios"],
-        correct: 0
-    },
-    {
-        question: "Which mountain range runs through Jamaica?",
-        options: ["Andes Mountains", "Blue Mountains", "Rocky Mountains", "Appalachian Mountains"],
-        correct: 1
-    },
-    {
-        question: "What is Jamaica's national bird?",
-        options: ["Hummingbird", "Parrot", "Doctor Bird (Red-billed Streamertail)", "Flamingo"],
-        correct: 2
-    },
-    {
-        question: "In which year did Jamaica gain independence?",
-        options: ["1960", "1962", "1964", "1966"],
-        correct: 1
-    },
-    {
-        question: "What is the currency of Jamaica?",
-        options: ["Jamaican Peso", "Jamaican Dollar", "Caribbean Dollar", "East Caribbean Dollar"],
-        correct: 1
-    },
-    {
-        question: "Which music genre originated in Jamaica?",
-        options: ["Salsa", "Reggae", "Bachata", "Merengue"],
-        correct: 1
-    },
-    {
-        question: "What is Jamaica's national flower?",
-        options: ["Rose", "Hibiscus", "Lignum Vitae", "Bougainvillea"],
-        correct: 2
-    },
-    {
-        question: "Which famous Jamaican athlete is known as the fastest man alive?",
-        options: ["Yohan Blake", "Asafa Powell", "Usain Bolt", "Shelly-Ann Fraser-Pryce"],
-        correct: 2
-    },
-    {
-        question: "What is the largest parish in Jamaica by area?",
-        options: ["Kingston", "St. Catherine", "St. Ann", "St. Elizabeth"],
-        correct: 3
-    },
-    {
-        question: "Which beverage company has its origins in Jamaica?",
-        options: ["Red Stripe", "Pepsi", "Coca-Cola", "Sprite"],
-        correct: 0
-    },
-    {
-        question: "What is the name of Jamaica's famous Blue Mountain product?",
-        options: ["Tea", "Coffee", "Cocoa", "Spices"],
-        correct: 1
-    },
-    {
-        question: "Which body of water surrounds Jamaica?",
-        options: ["Atlantic Ocean", "Pacific Ocean", "Caribbean Sea", "Gulf of Mexico"],
-        correct: 2
-    },
-    {
-        question: "What is Jamaica's national motto?",
-        options: ["One Love", "Out of Many, One People", "Island in the Sun", "No Problem"],
-        correct: 1
-    },
-    {
-        question: "Which famous Jamaican musician popularized reggae music worldwide?",
-        options: ["Jimmy Cliff", "Bob Marley", "Toots Hibbert", "Peter Tosh"],
-        correct: 1
-    },
-    {
-        question: "What is the traditional Jamaican patty filled with?",
-        options: ["Fish", "Chicken", "Beef", "All of the above"],
-        correct: 3
-    },
-    {
-        question: "Which parish is known as the 'Garden Parish' of Jamaica?",
-        options: ["Portland", "St. Mary", "St. Ann", "Manchester"],
-        correct: 2
-    },
-    {
-        question: "What language is primarily spoken in Jamaica?",
-        options: ["Spanish", "French", "English", "Portuguese"],
-        correct: 2
-    },
-    {
-        question: "Which Jamaican dish is made with saltfish and ackee?",
-        options: ["Curry Goat", "Jerk Chicken", "Ackee and Saltfish", "Rice and Peas"],
-        correct: 2
-    },
-    {
-        question: "What is the name of Jamaica's parliament building?",
-        options: ["Jamaica House", "Gordon House", "Kings House", "Parliament House"],
-        correct: 1
-    },
-    {
-        question: "Which famous beach is located in Negril?",
-        options: ["Doctor's Cave Beach", "Seven Mile Beach", "Dunn's River Beach", "Frenchman's Cove"],
-        correct: 1
-    }
-];
-
-let currentQuestions = [];
-let currentQuestionIndex = 0;
-let score = 0;
-let selectedAnswer = -1;
-
-function initializeQuiz() {
-    // Randomly select 20 questions
-    currentQuestions = [...jamaicaQuestions].sort(() => Math.random() - 0.5).slice(0, 20);
-    currentQuestionIndex = 0;
-    score = 0;
-    displayQuestion();
-}
-
-function displayQuestion() {
-    if (currentQuestionIndex >= currentQuestions.length) {
-        showQuizResults();
-        return;
-    }
-    
-    const question = currentQuestions[currentQuestionIndex];
-    const questionElement = document.getElementById('quizQuestion');
-    const optionsElement = document.getElementById('quizOptions');
-    const progressElement = document.getElementById('quizProgress');
-    
-    questionElement.textContent = `${currentQuestionIndex + 1}. ${question.question}`;
-    progressElement.textContent = `Question ${currentQuestionIndex + 1} of ${currentQuestions.length}`;
-    
-    optionsElement.innerHTML = '';
-    question.options.forEach((option, index) => {
-        const optionDiv = document.createElement('div');
-        optionDiv.className = 'option';
-        optionDiv.textContent = option;
-        optionDiv.onclick = () => selectOption(index);
-        optionsElement.appendChild(optionDiv);
-    });
-    
-    selectedAnswer = -1;
-    document.getElementById('nextQuestion').style.display = 'none';
-}
-
-function selectOption(index) {
-    selectedAnswer = index;
-    const options = document.querySelectorAll('.option');
-    options.forEach((option, i) => {
-        option.classList.remove('selected');
-        if (i === index) {
-            option.classList.add('selected');
-        }
-    });
-    document.getElementById('nextQuestion').style.display = 'block';
-}
-
-function nextQuestion() {
-    if (selectedAnswer === -1) return;
-    
-    if (selectedAnswer === currentQuestions[currentQuestionIndex].correct) {
-        score++;
-    }
-    
-    currentQuestionIndex++;
-    displayQuestion();
-}
-
-function showQuizResults() {
-    const percentage = (score / currentQuestions.length * 100).toFixed(1);
-    let message = '';
-    
-    if (percentage >= 90) {
-        message = 'Outstanding! You are a Jamaica expert! 🏆';
-    } else if (percentage >= 70) {
-        message = 'Great job! You know Jamaica well! 🌟';
-    } else if (percentage >= 50) {
-        message = 'Good effort! You have decent knowledge about Jamaica. 👍';
-    } else {
-        message = 'Keep learning about this beautiful island! 📚';
-    }
-    
-    document.getElementById('quizContainer').innerHTML = `
-        <div style="text-align: center; padding: 2rem;">
-            <h2>Quiz Complete!</h2>
-            <div class="score">Your Score: ${score}/${currentQuestions.length} (${percentage}%)</div>
-            <p style="font-size: 1.2rem; margin: 2rem 0;">${message}</p>
-            <button class="btn" onclick="initializeQuiz()">Take Quiz Again</button>
-        </div>
-    `;
-}
-
-// Form submission handlers
-function submitFeedback() {
-    const name = document.getElementById('feedbackName').value;
-    const email = document.getElementById('feedbackEmail').value;
-    const rating = document.getElementById('rating').value;
-    const comments = document.getElementById('comments').value;
-    
-    if (name && email && rating && comments) {
-        alert('Thank you for your feedback! We appreciate your input.');
-        // Reset form
-        document.getElementById('feedbackForm').reset();
-    } else {
-        alert('Please fill in all fields.');
-    }
-}
-
-function submitContact() {
-    const name = document.getElementById('contactName').value;
-    const email = document.getElementById('contactEmail').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    if (name && email && subject && message) {
-        alert('Thank you for contacting us! We will get back to you soon.');
-        // Reset form
-        document.getElementById('contactForm').reset();
-    } else {
-        alert('Please fill in all fields.');
-    }
-}
-
-// Floating elements animation
-function createFloatingElements() {
-    const container = document.getElementById('floatingElements');
-    for (let i = 0; i < 20; i++) {
-        const element = document.createElement('div');
-        element.className = 'floating-element';
-        element.style.left = Math.random() * 100 + '%';
-        element.style.width = element.style.height = Math.random() * 20 + 10 + 'px';
-        element.style.animationDelay = Math.random() * 15 + 's';
-        element.style.animationDuration = (Math.random() * 10 + 10) + 's';
-        container.appendChild(element);
-    }
-}
-
-// Initialize when page loads
-window.onload = function() {
-    createFloatingElements();
-    
-    // Add enter key listener for AI chat
-    document.getElementById('aiInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
-    
-    // Add enter key listener for private access
-    document.getElementById('privateCode').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            checkPrivateAccess();
-        }
-    });
-};
-
-// Game specific functions (simplified versions)
-let spaceGameActive = false;
-let spaceScore = 0;
-
-function startSpaceGame() {
-    spaceGameActive = true;
-    spaceScore = 0;
-    document.getElementById('score').textContent = 'Score: ' + spaceScore;
-    
-    // Simple space game simulation
-    setInterval(() => {
-        if (spaceGameActive) {
-            spaceScore += 10;
-            document.getElementById('score').textContent = 'Score: ' + spaceScore;
-        }
-    }, 1000);
-}
-
-function movePiece(index) {
-    // Simple puzzle piece movement logic
-    console.log('Moving piece:', index);
-}
-
-function shufflePuzzle() {
-    alert('Puzzle shuffled! Try to solve it by arranging numbers 1-8 in order.');
-}
-
-function startRacing() {
-    alert('Race started! Use arrow keys to steer your car!');
-}
-
-function makeChoice(choice) {
-    const storyElement = document.getElementById('fantasy-story');
-    const stories = {
-        'enter': 'You bravely enter the castle and discover a friendly dragon who needs your help!',
-        'around': 'You find a secret passage around the castle leading to hidden treasure!',
-        'wait': 'Your patience pays off as you spot the dragon\'s weakness from your hiding spot!'
-    };
-    storyElement.textContent = stories[choice] || 'You continue your adventure...';
-}
-
-let selectedBuilding = null;
-let cityMoney = 1000;
-let cityPopulation = 0;
-
-function selectBuilding(type) {
-    selectedBuilding = type;
-    alert(`Selected: ${type}. Now click on a plot to build!`);
-}
-
-function buildStructure(plotIndex) {
-    if (!selectedBuilding) {
-        alert('Please select a building type first!');
-        return;
-    }
-    
-    const costs = { house: 100, shop: 200, park: 150 };
-    const cost = costs[selectedBuilding];
-    
-    if (cityMoney >= cost) {
-        cityMoney -= cost;
-        cityPopulation += selectedBuilding === 'house' ? 4 : 0;
-        
-        const plot = document.querySelectorAll('.city-plot')[plotIndex];
-        const icons = { house: '🏠', shop: '🏪', park: '🌳' };
-        plot.textContent = icons[selectedBuilding];
-        plot.style.background = '#FFD93D';
-        
-        document.getElementById('money').textContent = cityMoney;
-        document.getElementById('population').textContent = cityPopulation;
-        
-        selectedBuilding = null;
-    } else {
-        alert('Not enough money!');
-    }
-}
-
-let cluesFound = 0;
-const mysteryClues = [
-    '🔍 Fingerprints on display case',
-    '👟 Muddy footprints by entrance',
-    '📹 Security camera was disabled',
-    '🔑 Master key missing from office',
-    '💎 Glass cutter found in trash'
-];
-
-function searchArea(area) {
-    if (cluesFound < 5) {
-        cluesFound++;
-        const clueList = document.getElementById('clue-list');
-        clueList.innerHTML += `<div>${mysteryClues[cluesFound - 1]}</div>`;
-        document.getElementById('clue-count').textContent = cluesFound;
-        
-        if (cluesFound === 5) {
-            alert('Congratulations! You\'ve solved the mystery. The security guard was the thief!');
-        }
-    }
-}
-</script>
-    <div class="floating-elements" id="floatingElements"></div>
-
     <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Marcelinium Inc</div>
-                <ul class="nav-links" id="navLinks">
-                    <li><a onclick="showPage('home')">Home</a></li>
-                    <li><a onclick="showPage('games')">Games</a></li>
-                    <li><a onclick="showPage('about')">About</a></li>
-                    <li><a onclick="showPage('team')">Our Team</a></li>
-                    <li><a onclick="showPage('ai')">Marcelinium AI</a></li>
-                    <li><a onclick="showPage('feedback')">Feedback</a></li>
-                    <li><a onclick="showPage('contact')">Contact</a></li>
-                    <li><a onclick="showPage('private')">Private</a></li>
-                </ul>
-                <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
-            </nav>
-        </div>
+        <nav class="container">
+            <div class="logo">Marcelinium Inc</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showSection('games')">Games</a></li>
+                <li><a href="#" onclick="showSection('ai')">AI Assistant</a></li>
+                <li><a href="#" onclick="showSection('quiz')">Jamaica Quiz</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <div class="container">
-                <section class="hero">
-                    <h1>Welcome to Marcelinium Inc</h1>
-                    <p>Innovating the Future with AI and Gaming Excellence</p>
-                    <button class="btn pulse" onclick="showPage('about')">Discover More</button>
-                </section>
-
-                <div class="grid">
-                    <div class="card glow">
-                        <h3>🎮 Premium Gaming</h3>
-                        <p>Experience cutting-edge games designed with passion and innovation. Our gaming portfolio spans multiple genres and platforms.</p>
-                        <button class="btn" onclick="showPage('games')">Explore Games</button>
-                    </div>
-                    <div class="card glow">
-                        <h3>🤖 AI Technology</h3>
-                        <p>Harness the power of artificial intelligence with our advanced Marcelinium AI platform. Chat, learn, and create with AI.</p>
-                        <button class="btn" onclick="showPage('ai')">Try AI</button>
-                    </div>
-                    <div class="card glow">
-                        <h3>👥 Expert Team</h3>
-                        <p>Meet our talented team of developers, designers, and innovators who make the magic happen at Marcelinium Inc.</p>
-                        <button class="btn" onclick="showPage('team')">Meet Team</button>
-                    </div>
-                </div>
-
-                <section class="hero">
-                    <h2>Why Choose Marcelinium Inc?</h2>
-                    <div class="grid">
-                        <div class="card">
-                            <h4>🚀 Innovation First</h4>
-                            <p>We pioneer new technologies and push boundaries in gaming and AI development.</p>
-                        </div>
-                        <div class="card">
-                            <h4>🎯 Quality Focus</h4>
-                            <p>Every product we create meets the highest standards of quality and user experience.</p>
-                        </div>
-                        <div class="card">
-                            <h4>🌟 Community Driven</h4>
-                            <p>We listen to our community and build products that truly matter to our users.</p>
-                        </div>
-                        <div class="card">
-                            <h4>🔧 Continuous Support</h4>
-                            <p>Our dedicated support team ensures you always have the help you need.</p>
-                        </div>
-                    </div>
-                </section>
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="container">
+            <div class="hero">
+                <h1>Welcome to Marcelinium Inc</h1>
+                <p>Pioneering the Future of Gaming and AI Technology</p>
             </div>
-        </div>
-
-        <!-- Games Page -->
-        <div id="games" class="page">
-            <div class="container">
-                <section class="hero">
-                    <h1>🎮 Our Games</h1>
-                    <p>Immerse yourself in worlds of endless possibilities</p>
-                </section>
-
-                <div class="grid">
-                    <div class="game-card" onclick="playGame('space-adventure')">
-                        <h3>🚀 Space Adventure</h3>
-                        <p>Embark on an epic journey through the cosmos. Battle aliens, explore planets, and discover the mysteries of the universe.</p>
-                        <div class="btn">Play Now</div>
-                    </div>
-                    <div class="game-card" onclick="playGame('puzzle-master')">
-                        <h3>🧩 Puzzle Master</h3>
-                        <p>Challenge your mind with intricate puzzles and brain teasers designed to test your logical thinking.</p>
-                        <div class="btn">Play Now</div>
-                    </div>
-                    <div class="game-card" onclick="playGame('racing-fury')">
-                        <h3>🏎️ Racing Fury</h3>
-                        <p>Feel the adrenaline rush as you race through dynamic tracks with realistic physics and stunning graphics.</p>
-                        <div class="btn">Play Now</div>
-                    </div>
-                    <div class="game-card" onclick="playGame('fantasy-quest')">
-                        <h3>⚔️ Fantasy Quest</h3>
-                        <p>Enter a magical realm filled with dragons, wizards, and epic quests that will test your courage.</p>
-                        <div class="btn">Play Now</div>
-                    </div>
-                    <div class="game-card" onclick="playGame('city-builder')">
-                        <h3>🏙️ City Builder</h3>
-                        <p>Create and manage your dream city. Balance resources, keep citizens happy, and build architectural marvels.</p>
-                        <div class="btn">Play Now</div>
-                    </div>
-                    <div class="game-card" onclick="playGame('mystery-detective')">
-                        <h3>🔍 Mystery Detective</h3>
-                        <p>Solve complex mysteries and crimes using your detective skills and sharp observation.</p>
-                        <div class="btn">Play Now</div>
-                    </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>🎮 Innovative Gaming</h3>
+                    <p>We create immersive gaming experiences that push the boundaries of creativity and technology. From indie gems to AAA productions, our games captivate players worldwide.</p>
                 </div>
-
-                <div id="gameArea" style="display: none;">
-                    <div class="card">
-                        <h2 id="gameTitle"></h2>
-                        <div id="gameContent"></div>
-                        <button class="btn" onclick="closeGame()">Back to Games</button>
-                    </div>
+                
+                <div class="feature-card">
+                    <h3>🤖 AI Excellence</h3>
+                    <p>Our advanced AI systems provide intelligent solutions for various industries. Experience the future of artificial intelligence with our cutting-edge Marcelinium AI assistant.</p>
                 </div>
-
-                <section class="hero">
-                    <h2>Game Features</h2>
-                    <div class="grid">
-                        <div class="card">
-                            <h4>🌟 Immersive Graphics</h4>
-                            <p>Stunning visuals that bring our game worlds to life with incredible detail and artistic flair.</p>
-                        </div>
-                        <div class="card">
-                            <h4>🎵 Dynamic Audio</h4>
-                            <p>Rich soundscapes and adaptive music that responds to your gameplay for maximum immersion.</p>
-                        </div>
-                        <div class="card">
-                            <h4>🏆 Achievement System</h4>
-                            <p>Unlock rewards, earn badges, and compete with friends on global leaderboards.</p>
-                        </div>
-                        <div class="card">
-                            <h4>📱 Multi-Platform</h4>
-                            <p>Play seamlessly across desktop, mobile, and tablet devices with cloud save synchronization.</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <!-- About Page -->
-        <div id="about" class="page">
-            <div class="container">
-                <section class="hero">
-                    <h1>About Marcelinium Inc</h1>
-                    <p>Pioneering the future of technology and entertainment</p>
-                </section>
-
-                <div class="card">
-                    <h2>Our Story</h2>
-                    <p>Founded in 2020, Marcelinium Inc began as a vision to bridge the gap between cutting-edge technology and accessible entertainment. Our journey started in a small garage with three passionate developers who shared a common dream: to create experiences that would inspire, educate, and entertain people worldwide.</p>
-                    
-                    <p>From humble beginnings, we've grown into a dynamic company that specializes in game development and artificial intelligence solutions. Our commitment to innovation has led us to develop groundbreaking technologies that power immersive gaming experiences and intelligent AI systems.</p>
-                </div>
-
-                <div class="grid">
-                    <div class="card">
-                        <h3>🎯 Our Mission</h3>
-                        <p>To create transformative digital experiences that combine the power of artificial intelligence with the joy of interactive entertainment, making advanced technology accessible and enjoyable for everyone.</p>
-                    </div>
-                    <div class="card">
-                        <h3>👁️ Our Vision</h3>
-                        <p>To be the leading innovator in AI-powered entertainment, setting new standards for interactive experiences and intelligent systems that enhance human creativity and connection.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>Our Values</h2>
-                    <div class="grid">
-                        <div class="card">
-                            <h4>Innovation Excellence</h4>
-                            <p>We constantly push the boundaries of what's possible, embracing new technologies and creative solutions.</p>
-                        </div>
-                        <div class="card">
-                            <h4>User-Centric Design</h4>
-                            <p>Every decision we make is guided by our users' needs, preferences, and feedback.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Ethical Technology</h4>
-                            <p>We develop AI and gaming solutions responsibly, with respect for privacy and human values.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Collaborative Spirit</h4>
-                            <p>We believe in the power of teamwork and community-driven development.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>Our Achievements</h2>
-                    <p>Since our inception, Marcelinium Inc has achieved remarkable milestones that reflect our commitment to excellence and innovation. We've successfully launched over 15 games across multiple platforms, reaching more than 2 million players worldwide.</p>
-                    
-                    <p>Our AI division has developed proprietary algorithms that have been recognized by leading technology publications. We've formed partnerships with major gaming platforms and technology companies, expanding our reach and impact in the industry.</p>
-                    
-                    <p>Awards and recognition include the Indie Game Developer Award 2022, AI Innovation Excellence Award 2023, and Best Gaming Startup recognition at the Tech Innovation Summit 2024.</p>
-                </div>
-
-                <div class="grid">
-                    <div class="card">
-                        <h3>🌍 Global Reach</h3>
-                        <p>Operating in 25+ countries with localized content and support in multiple languages.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🔬 R&D Focus</h3>
-                        <p>30% of our resources dedicated to research and development of next-generation technologies.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🤝 Community Impact</h3>
-                        <p>Supporting educational initiatives and providing free resources to aspiring developers.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🌱 Sustainable Growth</h3>
-                        <p>Committed to environmentally conscious business practices and carbon-neutral operations.</p>
-                    </div>
+                
+                <div class="feature-card">
+                    <h3>🚀 Future Forward</h3>
+                    <p>At Marcelinium Inc, we're not just building products – we're shaping the future. Join us on our journey to revolutionize entertainment and technology.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Team Page -->
-        <div id="team" class="page">
-            <div class="container">
-                <section class="hero">
-                    <h1>Our Amazing Team</h1>
-                    <p>Meet the brilliant minds behind Marcelinium Inc</p>
-                </section>
+    <!-- Games Section -->
+    <section id="games" class="section">
+        <div class="container">
+            <div class="hero">
+                <h1>Our Games</h1>
+                <p>Discover our collection of released titles and upcoming adventures</p>
+            </div>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-status released">Released</div>
+                    <h3>Quantum Realms</h3>
+                    <p>An epic sci-fi RPG where players navigate through parallel dimensions, making choices that affect multiple realities. Experience stunning visuals and deep storytelling.</p>
+                    <p><strong>Genre:</strong> RPG, Sci-Fi</p>
+                    <p><strong>Platform:</strong> PC, PlayStation, Xbox</p>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-status released">Released</div>
+                    <h3>Neon Streets</h3>
+                    <p>A cyberpunk racing adventure set in a futuristic metropolis. Customize your rides, explore the city, and compete in high-stakes tournaments.</p>
+                    <p><strong>Genre:</strong> Racing, Action</p>
+                    <p><strong>Platform:</strong> PC, Mobile</p>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-status upcoming">Upcoming</div>
+                    <h3>Mythic Legends</h3>
+                    <p>An open-world fantasy adventure featuring mythical creatures and ancient magic. Craft your destiny in a world where legends come alive.</p>
+                    <p><strong>Genre:</strong> Fantasy, Open World</p>
+                    <p><strong>Expected:</strong> Q4 2025</p>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-status upcoming">Upcoming</div>
+                    <h3>Space Colony Alpha</h3>
+                    <p>Build and manage your own space colony in this strategic simulation game. Balance resources, research new technologies, and explore the cosmos.</p>
+                    <p><strong>Genre:</strong> Strategy, Simulation</p>
+                    <p><strong>Expected:</strong> Q2 2026</p>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-status released">Released</div>
+                    <h3>Puzzle Nexus</h3>
+                    <p>A mind-bending puzzle game that challenges players with innovative mechanics and beautiful abstract art. Perfect for puzzle enthusiasts of all levels.</p>
+                    <p><strong>Genre:</strong> Puzzle, Indie</p>
+                    <p><strong>Platform:</strong> All Platforms</p>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-status upcoming">Upcoming</div>
+                    <h3>Ocean Depths</h3>
+                    <p>Dive into the mysterious underwater world in this exploration adventure. Discover ancient civilizations and creatures in the deepest ocean trenches.</p>
+                    <p><strong>Genre:</strong> Adventure, Exploration</p>
+                    <p><strong>Expected:</strong> Q1 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="grid">
-                    <div class="card">
-                        <div class="team-member">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjNjY3RUVBIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q0VPPC90ZXh0Pgo8L3N2Zz4=" alt="CEO">
-                            <h3>Marcel Johnson</h3>
-                            <h4>Chief Executive Officer</h4>
-                            <p>Visionary leader with 15 years of experience in tech innovation. Marcel founded Marcelinium Inc with the goal of revolutionizing the gaming and AI industry.</p>
-                        </div>
+    <!-- AI Section -->
+    <section id="ai" class="section">
+        <div class="container">
+            <div class="hero">
+                <h1>Marcelinium AI Assistant</h1>
+                <p>Chat with our advanced AI and experience the future of conversation</p>
+            </div>
+            
+            <div class="ai-chat">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai-message">
+                        <strong>Marcelinium AI:</strong> Hello! I'm Marcelinium, your AI assistant. I can help you with questions, provide information, or just have a friendly conversation. What would you like to talk about?
                     </div>
-                    <div class="card">
-                        <div class="team-member">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjNzY0QkEyIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q1RPPC90ZXh0Pgo8L3N2Zz4=" alt="CTO">
-                            <h3>Sarah Chen</h3>
-                            <h4>Chief Technology Officer</h4>
-                            <p>AI research expert and former Google engineer. Sarah leads our technical vision and oversees the development of our cutting-edge AI systems.</p>
-                        </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+                    <button class="btn" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section">
+        <div class="container">
+            <div class="hero">
+                <h1>Jamaica Knowledge Quiz</h1>
+                <p>Test your knowledge about the beautiful island of Jamaica!</p>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="score">Score: <span id="score">0</span>/20</div>
+                <div id="quizContent">
+                    <button class="btn" onclick="startQuiz()">Start Quiz</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName).classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // AI Chat functionality
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            
+            // Clear input
+            input.value = '';
+            
+            // Generate AI response
+            setTimeout(() => {
+                const response = generateAIResponse(message);
+                addMessage(response, 'ai');
+            }, 1000);
+        }
+
+        function addMessage(message, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            if (sender === 'user') {
+                messageDiv.innerHTML = `<strong>You:</strong> ${message}`;
+            } else {
+                messageDiv.innerHTML = `<strong>Marcelinium AI:</strong> ${message}`;
+            }
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function generateAIResponse(userMessage) {
+            const responses = [
+                "That's an interesting question! Let me think about that...",
+                "I understand what you're asking. Here's my perspective on that topic.",
+                "Great question! Based on my knowledge, I can tell you that...",
+                "I'm here to help! Regarding your question about " + userMessage.toLowerCase() + "...",
+                "That's a thoughtful inquiry. Let me provide you with some insights.",
+                "I appreciate you asking! Here's what I know about that subject.",
+                "Excellent question! I'd be happy to share some information about that.",
+                "Thanks for bringing that up! Here's my response to your question."
+            ];
+            
+            const topics = {
+                'hello': "Hello there! It's great to meet you. I'm Marcelinium AI, and I'm here to assist you with any questions or conversations you'd like to have.",
+                'games': "I love talking about games! Marcelinium Inc has created some amazing titles like Quantum Realms and Neon Streets. Are you interested in any particular genre?",
+                'ai': "Artificial Intelligence is fascinating! I'm an example of conversational AI designed to be helpful, informative, and engaging. What aspects of AI interest you most?",
+                'company': "Marcelinium Inc is a forward-thinking company focused on gaming and AI technology. We're passionate about creating innovative experiences that push boundaries.",
+                'help': "I'm here to help! You can ask me about our games, AI technology, general questions, or just chat about anything that interests you."
+            };
+            
+            // Check if user message contains any keywords
+            const userLower = userMessage.toLowerCase();
+            for (const [keyword, response] of Object.entries(topics)) {
+                if (userLower.includes(keyword)) {
+                    return response;
+                }
+            }
+            
+            // Default responses
+            const defaultResponses = [
+                "That's interesting! I'd love to learn more about your thoughts on this topic.",
+                "I appreciate you sharing that with me. What made you think about this?",
+                "That's a great point! I find these kinds of discussions really engaging.",
+                "Thanks for bringing that up! It's always fascinating to explore different perspectives.",
+                "I'm curious to hear more about your experience with this. Can you tell me more?",
+                "That sounds really interesting! I'd love to dive deeper into this topic with you."
+            ];
+            
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        // Jamaica Quiz functionality
+        const jamaicaQuestions = [
+            {
+                question: "What is the capital city of Jamaica?",
+                options: ["Kingston", "Montego Bay", "Spanish Town", "Ocho Rios"],
+                correct: 0
+            },
+            {
+                question: "Which mountain range runs through Jamaica?",
+                options: ["Blue Mountains", "Rocky Mountains", "Green Mountains", "Yellow Mountains"],
+                correct: 0
+            },
+            {
+                question: "What is Jamaica's national bird?",
+                options: ["Parrot", "Hummingbird", "Flamingo", "Eagle"],
+                correct: 1
+            },
+            {
+                question: "Which music genre originated in Jamaica?",
+                options: ["Jazz", "Reggae", "Blues", "Rock"],
+                correct: 1
+            },
+            {
+                question: "What is the currency of Jamaica?",
+                options: ["Jamaican Peso", "Jamaican Pound", "Jamaican Dollar", "Jamaican Euro"],
+                correct: 2
+            },
+            {
+                question: "Which famous Jamaican musician is known as the 'King of Reggae'?",
+                options: ["Jimmy Cliff", "Bob Marley", "Peter Tosh", "Burning Spear"],
+                correct: 1
+            },
+            {
+                question: "What is Jamaica's national flower?",
+                options: ["Rose", "Hibiscus", "Lily", "Orchid"],
+                correct: 1
+            },
+            {
+                question: "Which sea surrounds Jamaica?",
+                options: ["Atlantic Ocean", "Pacific Ocean", "Caribbean Sea", "Gulf of Mexico"],
+                correct: 2
+            },
+            {
+                question: "What is the main language spoken in Jamaica?",
+                options: ["Spanish", "French", "English", "Portuguese"],
+                correct: 2
+            },
+            {
+                question: "Which spice is Jamaica famous for producing?",
+                options: ["Cinnamon", "Allspice", "Nutmeg", "Cloves"],
+                correct: 1
+            },
+            {
+                question: "What is Jamaica's national dish?",
+                options: ["Curry Goat", "Jerk Chicken", "Ackee and Saltfish", "Rice and Peas"],
+                correct: 2
+            },
+            {
+                question: "Which European country first colonized Jamaica?",
+                options: ["Britain", "Spain", "France", "Portugal"],
+                correct: 1
+            },
+            {
+                question: "What is the name of Jamaica's famous Blue Mountain product?",
+                options: ["Tea", "Coffee", "Rum", "Sugar"],
+                correct: 1
+            },
+            {
+                question: "Which parish is Montego Bay located in?",
+                options: ["St. James", "St. Ann", "St. Catherine", "St. Andrew"],
+                correct: 0
+            },
+            {
+                question: "What is the Jamaican patois word for 'friend'?",
+                options: ["Bredrin", "Yute", "Irie", "Bashment"],
+                correct: 0
+            },
+            {
+                question: "Which famous Jamaican sprinter holds multiple world records?",
+                options: ["Asafa Powell", "Yohan Blake", "Usain Bolt", "Shelly-Ann Fraser-Pryce"],
+                correct: 2
+            },
+            {
+                question: "What does 'Irie' mean in Jamaican patois?",
+                options: ["Goodbye", "Everything is alright", "Thank you", "Hello"],
+                correct: 1
+            },
+            {
+                question: "Which fruit is used to make Jamaica's national dish?",
+                options: ["Mango", "Ackee", "Papaya", "Breadfruit"],
+                correct: 1
+            },
+            {
+                question: "What is Jamaica's independence day?",
+                options: ["August 6", "July 4", "September 21", "December 25"],
+                correct: 0
+            },
+            {
+                question: "Which Jamaican city is known as the 'Tourist Capital'?",
+                options: ["Kingston", "Spanish Town", "Montego Bay", "Port Antonio"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answered = false;
+
+        function startQuiz() {
+            // Randomize questions
+            currentQuestions = [...jamaicaQuestions].sort(() => Math.random() - 0.5);
+            currentQuestionIndex = 0;
+            score = 0;
+            answered = false;
+            
+            document.getElementById('score').textContent = score;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) {
+                showResults();
+                return;
+            }
+
+            const question = currentQuestions[currentQuestionIndex];
+            const quizContent = document.getElementById('quizContent');
+            
+            quizContent.innerHTML = `
+                <div class="question-card">
+                    <h3>Question ${currentQuestionIndex + 1}/20</h3>
+                    <p><strong>${question.question}</strong></p>
+                    <div class="options">
+                        ${question.options.map((option, index) => 
+                            `<div class="option" onclick="selectAnswer(${index})">${option}</div>`
+                        ).join('')}
                     </div>
-                    <div class="card">
-                        <div class="team-member">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRkY2QjZCIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+R0FNSU5HPC90ZXh0Pgo8L3N2Zz4=" alt="Gaming Director">
-                            <h3>Alex Rodriguez</h3>
-                            <h4>Gaming Director</h4>
-                            <p>Award-winning game designer with credits on multiple AAA titles. Alex brings creativity and innovation to every gaming project we undertake.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="team-member">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRkZEOTNEIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJibGFjayIgdGV4dC1hbmNob3I9Im1pZGRsZSI+REVTSUdOPC90ZXh0Pgo8L3N2Zz4=" alt="Design Lead">
-                            <h3>Emma Williams</h3>
-                            <h4>Creative Design Lead</h4>
-                            <p>Master of visual storytelling and user experience design. Emma ensures our products are not only functional but also beautiful and intuitive.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="team-member">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjNEVDREMxIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmaWxsPSJibGFjayIgdGV4dC1hbmNob3I9Im1pZGRsZS
+                    <button class="btn" onclick="nextQuestion()" style="margin-top: 1rem; opacity: 0.5;" id="nextBtn" disabled>Next Question</button>
+                </div>
+            `;
+            
+            answered = false;
+        }
+
+        function selectAnswer(selectedIndex) {
+            if (answered) return;
+            
+            answered = true;
+            const question = currentQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+            
+            if (selectedIndex === question.correct) {
+                score++;
+                document.getElementById('score').textContent = score;
+            }
+            
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.style.opacity = '1';
+            nextBtn.disabled = false;
+        }
+
+        function nextQuestion() {
+            if (!answered) return;
+            
+            currentQuestionIndex++;
+            showQuestion();
+        }
+
+        function showResults() {
+            const quizContent = document.getElementById('quizContent');
+            let message = '';
+            
+            if (score >= 18) {
+                message = 'Outstanding! You\'re a Jamaica expert! 🏆';
+            } else if (score >= 15) {
+                message = 'Excellent knowledge of Jamaica! 🌟';
+            } else if (score >= 12) {
+                message = 'Good job! You know Jamaica well! 👍';
+            } else if (score >= 8) {
+                message = 'Not bad! Keep learning about Jamaica! 📚';
+            } else {
+                message = 'Time to brush up on your Jamaica knowledge! 🤔';
+            }
+            
+            quizContent.innerHTML = `
+                <div class="question-card">
+                    <h2>Quiz Complete!</h2>
+                    <p style="font-size: 2rem; margin: 1rem 0;">Final Score: ${score}/20</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">${message}</p>
+                    <button class="btn" onclick="startQuiz()">Take Quiz Again</button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
