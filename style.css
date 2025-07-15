@@ -9,3 +9,26 @@
 .account {
     
 }
+
+.left {
+    text-align: left;
+}
+
+.navbar {
+  background-color: #5a5a5a;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #000000;
+  color: rgb(49, 47, 47);
+}
